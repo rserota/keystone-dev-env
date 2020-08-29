@@ -1,8 +1,8 @@
 {
-  "name": "@keystonejs/example-projects-todo",
-  "description": "A docker-based keystone dev environment..",
+  "name": "keystone-dev-env",
+  "description": "A Docker-based KeystoneJS dev environment.",
   "private": true,
-  "version": "5.0.15",
+  "version": "1.0.0",
   "author": "Raphael Serota",
   "license": "MIT",
   "engines": {
@@ -11,8 +11,10 @@
   "scripts": {
     "init": "./scripts/init.sh",
     "run": "node ./scripts/run.js",
+    "test": "node ./scripts/test.js",
+	"stop-server": "docker-compose restart web",
+	"restart-server": "docker-compose restart web && npm run run",
     "down": "docker-compose down",
-    "test": "mocha",
     "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
     "start": "cross-env NODE_ENV=production keystone start",

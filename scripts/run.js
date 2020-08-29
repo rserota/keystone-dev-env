@@ -10,20 +10,24 @@ const checkContainersAreRunning = function(){
 }
 
 
-function handle(signal) {
-  console.log(`Received ${signal}`);
+const runServer = function(){
+	try {
+		exec('docker-compose exec web npm run dev', {stdio: 'inherit'})
+	}
+	catch(e){
+		// This code runs when the user manually stops the server with ctrl-c
+		console.log("\n\nShutting down.\n")
+		process.exit(0)
+	}
 }
 
-process.on('SIGINT', handle);
-process.on('SIGTERM', handle);
-
 try {
-	if ( checkContainersAreRunning() ) { exec('docker-compose exec web npm run dev', {stdio: 'inherit'}) }
+	if ( checkContainersAreRunning() ) { runServer()  }
 	else {
 		console.log("One or more containers are not running. Let's try running init first, and then try starting the server once more.")
 		exec('npm run down', {stdio: 'inherit'})
 		exec('npm run init', {stdio: 'inherit'})
-		if ( checkContainersAreRunning() ) { exec('docker-compose exec web npm run dev', {stdio: 'inherit'}) }
+		if ( checkContainersAreRunning() ) { runServer() }
 		else { throw 'Containers are still not running after running init.' }
 	}
 }
