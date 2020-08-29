@@ -11,6 +11,7 @@ const adapterConfig = { knexOptions: { connection: 'postgres://postgres:dragons@
 
 const keystone = new Keystone({
   adapter: new Adapter(adapterConfig),
+  cookieSecret: 'P5Fb6ya3m4H'
 });
 
 keystone.createList('Todo', {
@@ -20,6 +21,7 @@ keystone.createList('Todo', {
   },
 });
 
+console.log('keystone app is setting up...')
 module.exports = {
   keystone,
   apps: [
