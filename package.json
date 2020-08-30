@@ -12,9 +12,11 @@
     "init": "./scripts/init.sh",
     "run": "node ./scripts/run.js",
     "test": "node ./scripts/test.js",
-	"stop-server": "docker-compose restart web",
-	"restart-server": "docker-compose restart web && npm run run",
+    "stop-server": "docker-compose restart web",
+    "restart-server": "docker-compose restart web && npm run run",
     "down": "docker-compose down",
+    "run-detached": "node ./scripts/run.js -d",
+
     "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
     "start": "cross-env NODE_ENV=production keystone start",
@@ -29,5 +31,9 @@
     "cross-env": "^7.0.0",
     "knex": "^0.21.5",
     "knex-migrate": "^1.7.4"
+  },
+  "devDependencies": {
+    "axios": "^0.20.0",
+    "mocha": "^8.1.3"
   }
 }
