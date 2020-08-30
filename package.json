@@ -9,7 +9,7 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "init": "./scripts/init.sh",
+    "init": "node ./scripts/init.js",
     "run": "node ./scripts/run.js",
     "test": "node ./scripts/test.js || true",
     "test-ci": "node ./scripts/test.js -T",
@@ -20,6 +20,7 @@
     "prettier-check": "npx prettier --check *.js */*.js */*.css */*.html || true",
     "prettier-check-ci": "npx prettier --check *.js */*.js */*.css */*.html",
     "prettier-fix": "npx prettier --write *.js */*.js */*.css */*.html",
+    "watch": "watch 'npm run down && npm run run' Dockerfile docker-compose.yml",
     "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
     "start": "cross-env NODE_ENV=production keystone start",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "axios": "^0.20.0",
-    "mocha": "^8.1.3"
+    "mocha": "^8.1.3",
+    "watch": "^1.0.2"
   }
 }

@@ -26,7 +26,7 @@ try {
 		runServer();
 	} else {
 		console.log(
-			"One or more containers are not running. Let's try running init first, and then try starting the server once more."
+			"One or more containers are not running. Let's try running 'init' first, and then try starting the server one more time."
 		);
 		exec("npm run down", { stdio: "inherit" });
 		exec("npm run init", { stdio: "inherit" });
