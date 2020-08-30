@@ -1,5 +1,5 @@
 const child_process = require("child_process");
-//const detached = process.argv[2]  || '' // mostly for CI. Runs the web server in the background.
+const detached = process.argv[2]  || '' // mostly for CI. Runs the web server in the background.
 const exec = function(command, options) {
 	return child_process.execSync(command, { encoding: "utf8", ...options });
 };
@@ -12,7 +12,8 @@ const checkContainersAreRunning = function() {
 
 try {
 	if (checkContainersAreRunning()) {
-		exec("docker-compose exec web npx mocha", { stdio: "inherit" });
+		let options = detached ? {} : { stdio: "inherit" };
+		exec(`docker-compose exec ${detached} web npx mocha`, options);
 	} else {
 		console.log(
 			"One or more containers are not running. Let's try running 'run' first, and then try running the tests one more time."
@@ -23,7 +24,7 @@ try {
 		if (checkContainersAreRunning()) {
 			exec("docker-compose exec web npx mocha", { stdio: "inherit" });
 		} else {
-			throw "Containers are still not running after running init.";
+			throw "Containers are still not running after running 'init'.";
 		}
 	}
 } catch (e) {

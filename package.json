@@ -12,6 +12,7 @@
     "init": "./scripts/init.sh",
     "run": "node ./scripts/run.js",
     "test": "node ./scripts/test.js",
+    "test-detached": "node ./scripts/test.js -d",
     "stop-server": "docker-compose restart web",
     "restart-server": "docker-compose restart web && npm run run",
     "down": "docker-compose down",
