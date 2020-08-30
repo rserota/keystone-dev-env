@@ -16,6 +16,9 @@
     "restart-server": "docker-compose restart web && npm run run",
     "down": "docker-compose down",
     "run-detached": "node ./scripts/run.js -d",
+	"prettier-check": "npx prettier --check *.js */*.js */*.css */*.html || true",
+	"prettier-check-ci": "npx prettier --check *.js */*.js */*.css */*.html",
+	"prettier-fix": "npx prettier --write *.js */*.js */*.css */*.html",
 
     "dev": "cross-env NODE_ENV=development DISABLE_LOGGING=true keystone dev",
     "build": "cross-env NODE_ENV=production keystone build",
