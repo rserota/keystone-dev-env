@@ -1,5 +1,5 @@
 const child_process = require("child_process");
-const detached = process.argv[2]  || '' // mostly for CI. Runs the web server in the background.
+const detached = process.argv[2] || ""; // mostly for CI. Runs the web server in the background.
 const exec = function(command, options) {
 	return child_process.execSync(command, { encoding: "utf8", ...options });
 };
