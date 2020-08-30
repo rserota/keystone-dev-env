@@ -13,7 +13,8 @@ const checkContainersAreRunning = function() {
 try {
 	if (checkContainersAreRunning()) {
 		let options = detached ? {} : { stdio: "inherit" };
-		exec(`docker-compose exec ${detached} web npx mocha`, options);
+		//let options = { stdio: "inherit" };
+		exec(`docker-compose exec -T  web npx mocha`, options);
 	} else {
 		console.log(
 			"One or more containers are not running. Let's try running 'run' first, and then try running the tests one more time."
@@ -28,7 +29,6 @@ try {
 		}
 	}
 } catch (e) {
-	console.log(`Test script failed:`);
-	console.log(e);
+	console.log(`Tests failed`);
 	process.exit(1); // non-zero exit code indicades failure
 }
