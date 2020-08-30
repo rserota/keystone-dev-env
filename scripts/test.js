@@ -1,6 +1,6 @@
 const child_process = require("child_process");
-const detached = process.argv[2] || ""; // mostly for CI. Runs the web server in the background.
-const exec = function(command, options) {
+const ci = process.argv[2] || ""; // for CI. Pass in '-T' to disable pseudo TTY.
+const exec = function(command, options) { // a simple function for running shell commands
 	return child_process.execSync(command, { encoding: "utf8", ...options });
 };
 
@@ -12,9 +12,10 @@ const checkContainersAreRunning = function() {
 
 try {
 	if (checkContainersAreRunning()) {
-		let options = detached ? {} : { stdio: "inherit" };
-		//let options = { stdio: "inherit" };
-		exec(`docker-compose exec -T  web npx mocha`, options);
+		//let options = detached ? {} : { stdio: "inherit" };
+		exec(`docker-compose exec ${ci}  web npx mocha`, {
+			stdio: "inherit",
+		});
 	} else {
 		console.log(
 			"One or more containers are not running. Let's try running 'run' first, and then try running the tests one more time."
