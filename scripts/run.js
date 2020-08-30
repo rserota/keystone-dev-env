@@ -12,7 +12,7 @@ const checkContainersAreRunning = function() {
 
 const runServer = function() {
 	try {
-		exec(`docker-compose exec ${detached} web npm run dev`)
+		exec(`docker-compose exec ${detached} web npm run dev`);
 	} catch (e) {
 		// This code runs when the user manually stops the server with ctrl-c
 		console.log("\n\nShutting down.\n");
