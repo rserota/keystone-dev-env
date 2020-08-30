@@ -1,6 +1,7 @@
 const child_process = require("child_process");
 const ci = process.argv[2] || ""; // for CI. Pass in '-T' to disable pseudo TTY.
-const exec = function(command, options) { // a simple function for running shell commands
+const exec = function(command, options) {
+	// a simple function for running shell commands
 	return child_process.execSync(command, { encoding: "utf8", ...options });
 };
 
