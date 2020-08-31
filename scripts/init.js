@@ -1,7 +1,4 @@
-const child_process = require("child_process");
-const exec = function(command, options) {
-	return child_process.execSync(command, { encoding: "utf8", ...options });
-};
+const exec = require("./common").exec;
 
 exec("docker-compose up --build -d", { stdio: "inherit" });
 exec("npm install", { stdio: "inherit" });

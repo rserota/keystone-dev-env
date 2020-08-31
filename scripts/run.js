@@ -1,19 +1,12 @@
-const child_process = require("child_process");
+const common = require("./common");
+const exec = common.exec;
+const checkContainersAreRunning = common.checkContainersAreRunning;
 const detached = process.argv[2] || ""; // mostly for CI. Runs the web server in the background if the user passes in '-d'.
-const exec = function(command, options) {
-	return child_process.execSync(command, { encoding: "utf8", ...options });
-};
-
-const checkContainersAreRunning = function() {
-	let webIsRunning = exec("docker ps --filter name=web -q").trim();
-	let dbIsRunning = exec("docker ps --filter name=db -q").trim();
-	return webIsRunning && dbIsRunning;
-};
 
 const runServer = function() {
 	try {
 		let options = detached ? {} : { stdio: "inherit" };
-		exec(`docker-compose exec ${detached} web npm run dev`, options);
+		exec(`docker-compose exec ${detached} -T web npm run dev`, options);
 	} catch (e) {
 		// This code runs when the user manually stops the server with ctrl-c
 		console.log("\n\nShutting down.\n");
