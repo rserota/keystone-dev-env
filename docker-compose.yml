@@ -14,11 +14,11 @@ services:
   db:
     image: postgres:12
     restart: always
+    environment:
+      POSTGRES_PASSWORD: dragons
     volumes:
     # Postgres will write its data to ./db/db_data, so that your data can persist after you stop the containers. 
       - ./db/db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_PASSWORD: dragons
 
