@@ -4,6 +4,7 @@ services:
   web:
     build: .
     volumes:
+    # The contents of this folder are automatically mounted into the docker container.
       - .:/app
     command: sleep infinity
     ports:
@@ -12,15 +13,8 @@ services:
     image: postgres:12
     restart: always
     volumes:
+    # Postgres will write its data to ./db/db_data, so that your data can persist after you stop the containers. 
       - ./db/db_data:/var/lib/postgresql/data
     ports:
       - 5432:5432
-    environment:
-      POSTGRES_PASSWORD: dragons
-
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
 

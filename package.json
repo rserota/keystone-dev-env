@@ -14,7 +14,7 @@
     "test": "node ./scripts/test.js || true",
     "test-ci": "node ./scripts/test.js -T",
     "stop-server": "docker-compose restart web",
-    "restart-server": "docker-compose restart web && npm run run",
+    "restart-server": "npm run stop-server && npm run run",
     "down": "docker-compose down",
     "run-detached": "node ./scripts/run.js -d",
     "prettier-check": "npx prettier --check *.js */*.js */*.css */*.html || true",
