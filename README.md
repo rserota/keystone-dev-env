@@ -34,7 +34,7 @@ Use this when you're not working on this project, and need to work on another pr
 # npm-run-prettier-check
 Runs the prettier formatter. This will tell you if any html, css, or js files are violating the style rules defined in `.prettierrc.js`, but won't actually edit any files.
 
-# npm-run-prettier-check
+# npm-run-prettier-fix
 Will edit and fix any html, css, or js files that violate style rules defined in `.prettierrc.js`. 
 
 # npm-run-watch
