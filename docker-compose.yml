@@ -9,6 +9,8 @@ services:
     command: sleep infinity
     ports:
       - "3000:3000"
+    depends_on:
+      - db
   db:
     image: postgres:12
     restart: always
